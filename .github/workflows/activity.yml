@@ -1,0 +1,25 @@
+name: Daily Activity Commit
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:       # lets you run it manually
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Update activity file
+        run: |
+          echo "Last run on $(date -u)" > activity.log
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: "chore: daily activity update"
+          add: "activity.log"
