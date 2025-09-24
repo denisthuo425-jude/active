@@ -19,7 +19,7 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          author_name: github-actions
+          author_name: denisthuo425-jude
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
           message: "chore: daily activity update"
           add: "activity.log"
