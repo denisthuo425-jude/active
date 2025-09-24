@@ -20,6 +20,6 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           author_name: denisthuo425-jude
-          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          author_email: 224608016+denisthuo425-jude@users.noreply.github.com
           message: "chore: daily activity update"
           add: "activity.log"
