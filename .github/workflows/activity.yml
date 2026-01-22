@@ -1,9 +1,12 @@
 name: Daily Activity Commit
 
+permissions:
+  contents: write   # 👈 THIS IS THE KEY FIX
+
 on:
   schedule:
     - cron: "0 */12 * * *"
-  workflow_dispatch:       # lets you run it manually
+  workflow_dispatch:
 
 jobs:
   build:
