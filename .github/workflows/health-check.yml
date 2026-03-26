@@ -1,0 +1,31 @@
+name: System Health Check
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"  # Runs every 12 hours
+  workflow_dispatch:        # Allows manual testing
+
+permissions:
+  contents: write
+
+jobs:
+  ping_and_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check Portfolio Status
+        run: |
+          STATUS=$(curl -o /dev/null -s -w "%{http_code}" https://denisthuo425-jude.github.io/thuo-portfolio/)
+          echo "Portfolio Status: $STATUS at $(date -u)" > activity.log
+
+      - name: Commit and Push
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: denisthuo425-jude
+          author_email: 224608016+denisthuo425-jude@users.noreply.github.com
+          message: "status: routine health check"
+          add: "activity.log"
